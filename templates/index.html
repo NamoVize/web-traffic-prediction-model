@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Web Traffic Prediction - Home{% endblock %}
+
+{% block content %}
+<div class="row mb-5">
+    <div class="col-md-12 text-center">
+        <h1 class="display-4 mb-4">Welcome to Web Traffic Prediction</h1>
+        <p class="lead mb-5">
+            A powerful machine learning application that helps you predict and understand your website traffic trends.
+        </p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title">Analyze Trends</h3>
+                <p class="card-text">
+                    Visualize historical traffic patterns and identify important trends that affect your website's performance.
+                </p>
+                <a href="/dashboard" class="btn btn-primary mt-3">
+                    <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-magic fa-3x mb-3 text-success"></i>
+                <h3 class="card-title">Predict Future</h3>
+                <p class="card-text">
+                    Generate accurate forecasts to help you plan resources, content strategies, and marketing campaigns.
+                </p>
+                <a href="/predict" class="btn btn-success mt-3">
+                    <i class="fas fa-magic me-2"></i>Make Predictions
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-upload fa-3x mb-3" style="color: #9b59b6;"></i>
+                <h3 class="card-title">Use Your Data</h3>
+                <p class="card-text">
+                    Upload your own website traffic data to create personalized predictions tailored to your specific patterns.
+                </p>
+                <a href="/upload" class="btn mt-3" style="background-color: #9b59b6; color: white;">
+                    <i class="fas fa-upload me-2"></i>Upload Data
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-info-circle me-2"></i>How It Works</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Our Model</h5>
+                        <p>
+                            This application uses Facebook's Prophet, a powerful forecasting tool that implements time-series forecasting procedures. 
+                            The model accounts for:
+                        </p>
+                        <ul>
+                            <li>Yearly, weekly, and daily seasonality</li>
+                            <li>Holiday effects</li>
+                            <li>Trend changes and outliers</li>
+                        </ul>
+                        <p>
+                            The result is a robust prediction system that adapts to your website's unique traffic patterns.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Getting Started</h5>
+                        <ol>
+                            <li>View the sample data predictions on the <a href="/dashboard">Dashboard</a></li>
+                            <li>Try different prediction periods on the <a href="/predict">Predict</a> page</li>
+                            <li>Upload your own CSV data to get customized predictions</li>
+                        </ol>
+                        <p>
+                            Your data should include a <code>date</code> column in YYYY-MM-DD format and a <code>pageviews</code> column with numerical values.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
