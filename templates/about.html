@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Web Traffic Prediction - About{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="mb-4"><i class="fas fa-info-circle me-2"></i>About This Project</h1>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Project Overview</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    The Web Traffic Prediction Model is an open-source tool designed to help website owners, 
+                    content creators, and marketers forecast their website traffic patterns. Using advanced 
+                    machine learning algorithms, this application analyzes historical traffic data to identify 
+                    patterns and predict future visitor numbers.
+                </p>
+                <p>
+                    Understanding traffic trends helps in planning content schedules, marketing campaigns, 
+                    server resources, and other crucial aspects of website management.
+                </p>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Technical Details</h5>
+            </div>
+            <div class="card-body">
+                <h6>Machine Learning Model</h6>
+                <p>
+                    This application utilizes Facebook's Prophet, a powerful forecasting library that 
+                    excels in time-series prediction. Prophet is particularly good at:
+                </p>
+                <ul>
+                    <li>Handling multiple seasonality patterns (daily, weekly, yearly)</li>
+                    <li>Working well with missing data and outliers</li>
+                    <li>Accounting for holiday effects and special events</li>
+                    <li>Capturing non-linear growth trends</li>
+                </ul>
+                
+                <h6>Technologies Used</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Python 3.8+</li>
+                            <li>Flask web framework</li>
+                            <li>Prophet for time-series forecasting</li>
+                            <li>Pandas for data manipulation</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Plotly for interactive visualizations</li>
+                            <li>Bootstrap for responsive design</li>
+                            <li>Docker for containerization</li>
+                            <li>Scikit-learn for metrics calculation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">How It Works</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-3 text-center">
+                        <i class="fas fa-database fa-3x mb-3" style="color: #3498db;"></i>
+                        <h6>Data Input</h6>
+                        <p class="small">Historical traffic data is loaded or uploaded by the user</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <i class="fas fa-cogs fa-3x mb-3" style="color: #9b59b6;"></i>
+                        <h6>Processing</h6>
+                        <p class="small">Data is preprocessed and features are extracted</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <i class="fas fa-brain fa-3x mb-3" style="color: #e74c3c;"></i>
+                        <h6>Model Training</h6>
+                        <p class="small">Prophet model learns patterns in the data</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <i class="fas fa-chart-line fa-3x mb-3" style="color: #2ecc71;"></i>
+                        <h6>Prediction</h6>
+                        <p class="small">Model generates future traffic forecasts</p>
+                    </div>
+                </div>
+                
+                <p>
+                    The model identifies several components in your traffic data:
+                </p>
+                <ul>
+                    <li><strong>Trend</strong>: The overall direction your traffic is moving (increasing, decreasing, or stable)</li>
+                    <li><strong>Seasonality</strong>: Regular patterns that occur at fixed intervals (daily, weekly, monthly, yearly)</li>
+                    <li><strong>Holiday Effects</strong>: Unusual spikes or drops around holidays or special events</li>
+                    <li><strong>Changepoints</strong>: Moments when your traffic pattern significantly changes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Getting Started</h5>
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li class="mb-2">
+                        Clone the repository:
+                        <pre class="bg-light p-2 mt-2 rounded"><code>git clone https://github.com/NamoVize/web-traffic-prediction-model.git</code></pre>
+                    </li>
+                    <li class="mb-2">
+                        Run with Docker (recommended):
+                        <pre class="bg-light p-2 mt-2 rounded"><code>docker-compose up</code></pre>
+                    </li>
+                    <li class="mb-2">
+                        Or install dependencies and run with Python:
+                        <pre class="bg-light p-2 mt-2 rounded"><code>pip install -r requirements.txt
+python app.py</code></pre>
+                    </li>
+                    <li class="mb-2">
+                        Open your browser and navigate to:
+                        <pre class="bg-light p-2 mt-2 rounded"><code>http://localhost:8000</code></pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Contributors</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://github.com/NamoVize.png" alt="NamoVize" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                    <div>
+                        <h6 class="mb-0">Mohamed & Nasef</h6>
+                        <a href="https://github.com/NamoVize" target="_blank">@NamoVize</a>
+                    </div>
+                </div>
+                <p>
+                    Want to contribute? Check out our 
+                    <a href="https://github.com/NamoVize/web-traffic-prediction-model/issues" target="_blank">issues</a> 
+                    or submit a pull request.
+                </p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">License</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    This project is licensed under the MIT License - see the 
+                    <a href="https://github.com/NamoVize/web-traffic-prediction-model/blob/main/LICENSE" target="_blank">LICENSE</a> 
+                    file for details.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
