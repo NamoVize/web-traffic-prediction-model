@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Web Traffic Prediction - Make Predictions{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="mb-4"><i class="fas fa-magic me-2"></i>Traffic Predictions</h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Make Custom Predictions</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/predict">
+                    <div class="mb-3">
+                        <label for="days" class="form-label">Prediction Period (Days)</label>
+                        <input type="number" class="form-control" id="days" name="days" 
+                               min="1" max="365" value="{{ days|default(30) }}" required>
+                        <div class="form-text">Enter the number of days you want to predict into the future.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-play me-2"></i>Generate Prediction
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if graph is defined %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Prediction Results for Next {{ days }} Days</h5>
+            </div>
+            <div class="card-body">
+                <div id="prediction-chart" class="graph-container mb-4"></div>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Predicted Page Views</th>
+                                <th>Lower Bound</th>
+                                <th>Upper Bound</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in prediction_data %}
+                            <tr>
+                                <td>{{ row.ds|string|truncate(10, true, '') }}</td>
+                                <td>{{ row.yhat|int }}</td>
+                                <td>{{ row.yhat_lower|int }}</td>
+                                <td>{{ row.yhat_upper|int }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-12 text-center">
+        <a href="/dashboard" class="btn btn-primary me-3">
+            <i class="fas fa-tachometer-alt me-2"></i>Back to Dashboard
+        </a>
+        <a href="/upload" class="btn btn-success">
+            <i class="fas fa-upload me-2"></i>Upload Your Own Data
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if graph is defined %}
+<script>
+    // Parse the graph data from Flask
+    var graphData = {{ graph|safe }};
+    
+    // Render the graph
+    Plotly.newPlot('prediction-chart', graphData.data, graphData.layout);
+    
+    // Make chart responsive
+    window.onresize = function() {
+        Plotly.relayout('prediction-chart', {
+            'xaxis.autorange': true,
+            'yaxis.autorange': true
+        });
+    };
+</script>
+{% endif %}
+{% endblock %}
