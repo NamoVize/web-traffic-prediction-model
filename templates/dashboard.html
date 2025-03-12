@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Web Traffic Prediction - Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="mb-4"><i class="fas fa-tachometer-alt me-2"></i>Traffic Dashboard</h1>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card stats-card h-100">
+            <i class="fas fa-chart-line"></i>
+            <div class="stats-value">{{ stats.last_value }}</div>
+            <div class="stats-label">Latest Page Views</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stats-card h-100">
+            <i class="fas fa-calculator"></i>
+            <div class="stats-value">{{ stats.avg_value }}</div>
+            <div class="stats-label">Average Page Views</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stats-card h-100">
+            <i class="fas fa-arrow-up"></i>
+            <div class="stats-value">{{ stats.max_pred }}</div>
+            <div class="stats-label">Max Predicted Views</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stats-card h-100">
+            <i class="fas fa-chart-bar"></i>
+            <div class="stats-value">{{ stats.trend }}</div>
+            <div class="stats-label">Overall Trend</div>
+        </div>
+    </div>
+</div>
+
+<!-- Combined View Chart -->
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Combined View: Historical and Predicted Traffic</h5>
+            </div>
+            <div class="card-body">
+                <div id="combined-chart" class="graph-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Historical and Prediction Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Historical Website Traffic</h5>
+            </div>
+            <div class="card-body">
+                <div id="historical-chart" class="graph-container"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Predicted Website Traffic</h5>
+            </div>
+            <div class="card-body">
+                <div id="prediction-chart" class="graph-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="row mb-5">
+    <div class="col-md-12 text-center">
+        <a href="/predict" class="btn btn-primary me-3">
+            <i class="fas fa-magic me-2"></i>Make Custom Predictions
+        </a>
+        <a href="/upload" class="btn btn-success">
+            <i class="fas fa-upload me-2"></i>Upload Your Own Data
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Parse the graph data from Flask
+    var graph1Data = {{ graph1|safe }};
+    var graph2Data = {{ graph2|safe }};
+    var graph3Data = {{ graph3|safe }};
+    
+    // Render the graphs
+    Plotly.newPlot('historical-chart', graph1Data.data, graph1Data.layout);
+    Plotly.newPlot('prediction-chart', graph2Data.data, graph2Data.layout);
+    Plotly.newPlot('combined-chart', graph3Data.data, graph3Data.layout);
+    
+    // Make charts responsive
+    window.onresize = function() {
+        Plotly.relayout('historical-chart', {
+            'xaxis.autorange': true,
+            'yaxis.autorange': true
+        });
+        Plotly.relayout('prediction-chart', {
+            'xaxis.autorange': true,
+            'yaxis.autorange': true
+        });
+        Plotly.relayout('combined-chart', {
+            'xaxis.autorange': true,
+            'yaxis.autorange': true
+        });
+    };
+</script>
+{% endblock %}
