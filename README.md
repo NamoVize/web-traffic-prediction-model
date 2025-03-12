@@ -1,6 +1,6 @@
 # Web Traffic Prediction Model
 
-A user-friendly machine learning application that predicts website traffic trends with minimal setup required.
+A user-friendly machine learning application that predicts website traffic trends.
 
 ## Features
 
