@@ -49,10 +49,6 @@ Then open your browser to http://localhost:8000
 4. The model automatically retrains when new data is provided
 5. Results are displayed through an interactive dashboard
 
-## Sample Screenshots
-
-![Dashboard](screenshots/dashboard.png)
-![Prediction](screenshots/prediction.png)
 
 ## Technologies Used
 
